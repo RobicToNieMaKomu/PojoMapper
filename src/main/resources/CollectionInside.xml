@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+
+class A {
+    Collection<B> a;
+        int b;
+}
+
+class B {
+    int b;
+}
+
+class C {
+    int c;
+    int d;
+}
+
+    <mappings>
+        <!-- one to many relationship-->
+        <mapping classFrom="A" classTo="C" rel="one2many">
+            <get from="a" collection="true">
+                <get from="b" to="c" />
+            </get>
+            <get from="a" to="d" />
+        </mapping>
+    </mappings>

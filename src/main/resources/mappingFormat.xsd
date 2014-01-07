@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:element name="mappings" type="mappingsType"/>
+
+    <xs:complexType name="mappingsType">
+        <xs:sequence>
+            <xs:element name="mapping" type="mappingType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>    
+
+    <xs:complexType name="mappingType">
+        <xs:sequence>
+            <xs:element name="get" type="getType" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="part" type="partType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="classFrom" type="xs:string" />
+        <xs:attribute name="classTo" type="xs:string" use="required" /> 
+        <xs:attribute name="rel" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="one2many" />
+                    <xs:enumeration value="many2one" />
+                    <xs:enumeration value="one2one" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>  
+    </xs:complexType>  
+
+    <xs:complexType name="getType">
+        <xs:sequence>
+            <xs:element name="get" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="from" type="xs:string" use="required"/>
+        <xs:attribute name="to" type="xs:string"/> 
+        <xs:attribute name="collection" type="xs:string"/>  
+    </xs:complexType>
+
+    <xs:complexType name="partType">
+        <xs:sequence>
+            <xs:element name="get" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="classFrom" type="xs:string" use="required" />
+    </xs:complexType>
+    
+</xs:schema>
