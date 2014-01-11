@@ -30,6 +30,6 @@ public class HelperUtilsTest {
     
     @Test
     public void testLoadExistingXml() throws IOException {
-        Document xmlDoc = helperUtils.loadXmlFromPath("test.xml");
+        Document xmlDoc = helperUtils.loadXmlFromPath("/Simple.xml");
     }
 }

@@ -1,5 +1,6 @@
 package com.polmos.pojomapper.service;
 
+import java.io.IOException;
 import org.w3c.dom.Document;
 
 /**
@@ -8,5 +9,7 @@ import org.w3c.dom.Document;
  */
 public interface MappingValidator {
 
-    void validateMapping(Document xmlMapping);
+    void validateMapping(Document xmlMapping) throws IOException;
+    
+    void checkDuplicateMappings(Document xmlMapping) throws IOException;
 }

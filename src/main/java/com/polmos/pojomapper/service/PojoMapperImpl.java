@@ -49,21 +49,30 @@ public class PojoMapperImpl implements PojoMapper {
         }
     }
 
-    public <T1, T2> T1 mapFromClass(T2 object) throws IOException {
-        T1 result = null;
+    @Override
+    public <T1, T2> List<T1> oneToMany(T2 object) throws IOException {
         if (isInitialized == true) {
         } else {
             throw new IOException("mapFrom method invoked, before mapper initialization");
         }
-        return result;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public <T1, T2> List<T1> mapFromClass(List<T2> objects) throws IOException {
-        List<T1> result = new ArrayList<T1>();
+    @Override
+    public <T1, T2> T1 oneToOne(T2 object) throws IOException {
         if (isInitialized == true) {
         } else {
             throw new IOException("mapFrom method invoked, before mapper initialization");
         }
-        return result;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public <T1, T2> T1 manyToOne(List<T1> objects) throws IOException {
+        if (isInitialized == true) {
+        } else {
+            throw new IOException("mapFrom method invoked, before mapper initialization");
+        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

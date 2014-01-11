@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<mappings>
+    <!-- one to many relationship-->
+    <mapping classFrom="com.pojos.POJOWithPrimitiveCollection" classTo="com.pojos.B" rel="one2many">
+        <get from="collection" to="i" collection="true" />
+    </mapping>
+    <mapping classFrom="com.pojos.POJOWithMembersCollection" classTo="A" rel="one2many">
+        <get from="membersCollection" collection="true">
+            <get from="s" to="s" />
+        </get>
+        <get from="membersCollection" collection="true">
+            <get from="s" to="s" />
+        </get>
+    </mapping>
+</mappings>
