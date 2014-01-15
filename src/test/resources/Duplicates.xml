@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<mappings>
+    <mapping classFrom="com.pojos.SimplePOJO" classTo="com.pojos.A">
+        <get from="s" to="s" />
+    </mapping>
+    <mapping classFrom="com.pojos.SimplePOJO" classTo="com.pojos.A">
+        <get from="s" to="s" />
+    </mapping>
+</mappings>

@@ -1,6 +1,7 @@
 package com.polmos.pojomapper.service;
 
 import java.io.IOException;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.w3c.dom.Document;
@@ -31,5 +32,6 @@ public class HelperUtilsTest {
     @Test
     public void testLoadExistingXml() throws IOException {
         Document xmlDoc = helperUtils.loadXmlFromPath("/Simple.xml");
+        Assert.assertNotNull(xmlDoc);
     }
 }
