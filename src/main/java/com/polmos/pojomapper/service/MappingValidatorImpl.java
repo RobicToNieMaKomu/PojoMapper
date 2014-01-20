@@ -75,13 +75,13 @@ public class MappingValidatorImpl implements MappingValidator {
                     } else if (classFromAttr != null && classToAttr != null) {
                         nodesAttributesMap.put(i, new NodeAttributes(classFromAttr.getTextContent(), classToAttr.getTextContent()));
                     }
-                    NodeList getters = mapping.getChildNodes();
+                    /*NodeList getters = mapping.getChildNodes();
                     while (getters != null) {
                         for (int j = 0; j < getters.getLength(); j++) {
                             Node getter = getters.item(j);
                         }
 
-                    }
+                    }*/
                 }
                 // Check if there are two pairs with the same mapFrom and mapTo attributes
                 for (Integer i : nodesAttributesMap.keySet()) {
@@ -108,15 +108,14 @@ public class MappingValidatorImpl implements MappingValidator {
                     NodeList childNodes = node.getChildNodes();
                     if (childNodes != null) {
                         traverseNodes(level + 1, childNodes, nodeAttributes);
-                    } else {
                         NamedNodeMap attributes = node.getAttributes();
                         if (attributes != null) {
                             Node fromAttr = attributes.getNamedItem(FROM_ATTR);
                             Node toAttr = attributes.getNamedItem(TO_ATTR);
-                            String from = (fromAttr != null) ? fromAttr.getTextContent() : "";
-                            String to = (toAttr != null) ? toAttr.getTextContent() : "";
+                            String from = (fromAttr != null) ? fromAttr.getTextContent() : null;
+                            String to = (toAttr != null) ? toAttr.getTextContent() : null;
                             NodeAttributes nodeAttribute = new NodeAttributes(from, to);
-                            List<NodeAttributes> listOfNodeAttributes = nodeAttributes.get(i);
+                            List<NodeAttributes> listOfNodeAttributes = nodeAttributes.get(level);
                             if (listOfNodeAttributes == null) {
                                 listOfNodeAttributes = new ArrayList<>();
                             }
@@ -128,7 +127,6 @@ public class MappingValidatorImpl implements MappingValidator {
                     logger.warn("Null node at level " + level);
                 }
             }
-        } else {
         }
     }
 }

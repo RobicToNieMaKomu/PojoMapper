@@ -4,9 +4,8 @@
         <part classFrom="com.pojos.PojoWithMembers" >
             <get from="object" to="obj" />
         </part>
-        <part classFrom="com.pojos.SimplePOJO" >
-            <get from="s" to="s" />
-            <get from="j" to="j" />
+        <part classFrom="com.pojos.PojoWithMembers" >
+            <get from="object" to="obj" />
         </part>
     </mapping>
 </mappings>

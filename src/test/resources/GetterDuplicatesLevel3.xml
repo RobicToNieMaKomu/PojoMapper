@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<mappings>
+    <mapping classFrom="com.pojos.SimplePOJO" classTo="com.pojos.A">
+        <get from="1" >
+            <get from="2" >
+                <get from="3" to="3" />    
+            </get>
+        </get>
+        <get from="1" >
+            <get from="2" >
+                <get from="3" to="3" />    
+            </get>
+        </get>
+        <get from="1" >
+            <get from="2" to="2" />
+            <get from="2" to="2" />        
+        </get>
+        <get from="1" to="1" />    
+    </mapping>
+</mappings>

@@ -43,6 +43,11 @@ public class NodeAttributes {
     }
 
     @Override
+    public String toString() {
+        return "NodeAttributes{" + "from=" + from + ", to=" + to + '}';
+    }
+
+    @Override
     public int hashCode() {
         int hash = 7;
         hash = 23 * hash + Objects.hashCode(this.from);
