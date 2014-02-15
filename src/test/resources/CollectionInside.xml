@@ -9,7 +9,7 @@
             <get from="s" to="s" />
         </get>
         <get from="membersCollection" collection="true">
-            <get from="s" to="s" />
+            <get from="s" to="g" />
         </get>
     </mapping>
 </mappings>

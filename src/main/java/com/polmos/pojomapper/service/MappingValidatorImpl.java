@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.xml.XMLConstants;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.validation.Schema;
@@ -75,13 +77,10 @@ public class MappingValidatorImpl implements MappingValidator {
                     } else if (classFromAttr != null && classToAttr != null) {
                         nodesAttributesMap.put(i, new NodeAttributes(classFromAttr.getTextContent(), classToAttr.getTextContent()));
                     }
-                    /*NodeList getters = mapping.getChildNodes();
-                    while (getters != null) {
-                        for (int j = 0; j < getters.getLength(); j++) {
-                            Node getter = getters.item(j);
-                        }
-
-                    }*/
+                    // Find getter duplicates
+                    Map<Integer, List<NodeAttributes>> lvlToAttributesMap = new HashMap<>();
+                    traverseNodes(0, mapping.getChildNodes(), lvlToAttributesMap);
+                    findGetterDuplicates(lvlToAttributesMap);
                 }
                 // Check if there are two pairs with the same mapFrom and mapTo attributes
                 for (Integer i : nodesAttributesMap.keySet()) {
@@ -95,6 +94,7 @@ public class MappingValidatorImpl implements MappingValidator {
                         }
                     }
                 }
+
             }
         }
     }
@@ -128,5 +128,31 @@ public class MappingValidatorImpl implements MappingValidator {
                 }
             }
         }
+    }
+
+    private void findGetterDuplicates(Map<Integer, List<NodeAttributes>> lvlToAttributesMap) throws IOException {
+        if (lvlToAttributesMap != null) {
+            // Initialize with attributes from the deepest lvl
+            List<NodeAttributes> attributesFromDeeperLvl = lvlToAttributesMap.get(lvlToAttributesMap.size() - 1);
+            for (int i = lvlToAttributesMap.size() - 1; i == 0; i--) {
+                List<NodeAttributes> attributes = lvlToAttributesMap.get(i);
+                attributesFromDeeperLvl.retainAll(attributes);
+            }
+            if (attributesFromDeeperLvl.size() > 1 && hasDuplicate(attributesFromDeeperLvl)) {
+                throw new IOException("Chatanooga!");
+            }
+        }
+    }
+
+    private <T> boolean hasDuplicate(Iterable<T> all) {
+        Set<T> set = new HashSet<>();
+        // Set#add returns false if the set does not change, which
+        // indicates that a duplicate element has been added.
+        for (T each : all) {
+            if (!set.add(each)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
