@@ -168,4 +168,11 @@ public class MappingValidatorTest {
         Document xml = helperUtils.loadXmlFromPath(PATH_TO_GETTER_DUPLICATES);
         mappingValidator.checkDuplicateMappings(xml);
     }
+    
+    @Test
+    public void testSomething() throws IOException {
+        Document xml = helperUtils.loadXmlFromPath(PATH_TO_SIMPLE_MAPPING);
+        PojoAdapter pojoAdapter = new PojoAdapterImpl(xml);
+        pojoAdapter.oneToOne(new Object().getClass(), new Object());
+    }
 }
